@@ -1,0 +1,10 @@
+{
+    "python.defaultInterpreterPath": "venv/bin/python",
+    "python.terminal.activateEnvironment": true,
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintArgs": ["--errors-only"],
+    "python.formatting.provider": "black",
+    "python.envFile": "${workspaceFolder}/.env"
+  }
+  

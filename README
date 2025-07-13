@@ -1,0 +1,105 @@
+# 🧠 Quantum Flux Trading (QFT)
+
+Quantum Flux Trading (QFT) is a research-grade, modular Python tool designed for generating, visualizing, and testing spoofed financial datasets. Built with a Flask web interface and a quant-optimized backend, QFT simulates market activity and prepares the groundwork for deploying machine-learning or rule-based trading strategies.
+
+This project demonstrates capabilities in full-stack Python development, data engineering, and quantitative reasoning — intended for investor demonstrations, technical interviews, and internal quant R&D.
+
+---
+
+## 🚀 Features
+
+- 📈 **Synthetic Stock Data Generation** via `stock_spoof_generator.py`
+- 🧪 **Data Quality Assessment** with `quality_assessment.txt`
+- 🌐 **Flask Web Interface** for uploading and visualizing data
+- 📊 **Interactive Plotting** with `plotly`, `matplotlib`
+- 💡 **Modular Components** for data fetching, order logic, and API integrations (e.g., Alpaca)
+
+---
+
+## 🗂️ Project Structure
+
+qft/
+├── app.py # Flask app entrypoint
+├── alpaca_trading.py # Alpaca trading logic (optional use)
+├── cancel_order.py # Trade cancellation module
+├── data_fetch.py # Financial data ingestion module
+├── documentation.md # Code-level doc walkthrough
+├── plot_stock_data.py # Local plotting utilities
+├── quality_assessment.txt # Notes on data realism / spoofing evaluation
+├── requirements.txt # Clean installable dependencies
+├── static/ # Static web assets (e.g., plot images)
+├── stock_spoof_data.json # Example generated data
+├── stock_spoof_generator.py # Synthetic data generator
+├── templates/ # Jinja2 templates for web rendering
+└── url_builder.py # API URL routing utilities
+
+
+---
+
+## ⚙️ Installation (Python 3.12+ Recommended)
+
+> Requires Python 3.12 or compatible virtual environment.
+
+```bash
+# Clone the repo
+git clone https://github.com/yourusername/qft.git
+cd qft
+
+# Create clean Python environment
+python3 -m venv venv
+source venv/bin/activate
+
+# Install only core dependencies (Python 3.12-compatible)
+pip install -r requirements.txt
+
+# Run the Flask app
+python app.py
+
+# Access locally at: 
+ http://127.0.0.1:8000/
+
+ # Usage Summary 
+ Launch app with python app.py
+
+Navigate to localhost:8000 in your browser
+
+Upload a .json file containing stock data (e.g., stock_spoof_data.json)
+
+Visualize the data interactively
+
+Reference stock_spoof_generator.py to create new simulation sets
+
+# Core dependencies
+| Package    | Purpose                             |
+| ---------- | ----------------------------------- |
+| Flask      | Web framework for the app           |
+| pandas     | Time series data manipulation       |
+| plotly     | Interactive financial plotting      |
+| matplotlib | Static plotting utility             |
+| yfinance   | Real-time financial data (optional) |
+| numpy      | Data generation and math utilities  |
+| requests   | REST API integration (Alpaca, etc.) |
+
+
+# Developer Notes
+
+This is a prototype environment – not for live trading.
+
+Alpaca logic (alpaca_trading.py, cancel_order.py) is modular and can be connected to real trading endpoints for testing (requires API keys).
+
+A requirements.txt is manually cleaned to support Python 3.12; avoid older llvmlite, numba, or trainer versions.
+
+# For Investors or Hiring Managers
+This repo demonstrates:
+
+✅ Python fluency across data + web + API
+
+✅ Modular architecture for quant workflows
+
+✅ Practical fluency with plotting libraries
+
+✅ Ability to structure clean environments & reproducible installs
+
+✅ Candidate is capable of rapid prototyping and backend logic modeling
+
+
