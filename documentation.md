@@ -1,34 +1,17 @@
-# Quantum Flux Trading Documentation
+# QFT route notes
 
-## Introduction
-This Flask application provides real-time stock data visualization using candlestick charts. Users can input stock symbols, data types, and time intervals to view interactive candlestick charts.
+These notes describe the current Flask routes. See [README.md](README.md) for setup and limitations.
 
-## API Endpoints
+| Route | Input / behavior |
+| --- | --- |
+| `GET /` | Fetches daily IBM data and renders a candlestick chart |
+| `POST /` | Reads form fields `symbol`, `outputsize`, `function_interval`, and optional `intraday_interval` |
+| `GET /trading` | Retrieves Alpaca paper-account and portfolio-history data |
+| `POST /trading` | Submits an Alpaca paper order from form fields |
+| `GET /cancel_order` | Attempts to cancel the most recent open paper order |
 
-### GET / (Home Page)
-- Method: GET
-- Description: Display the home page with the default candlestick chart.
-- Input Parameters: None
-- Output: HTML page with candlestick chart.
+For chart requests, `function_interval` is `daily` or `intraday`. For intraday data, `intraday_interval` supplies the interval, such as `15min`. The route reads form data, not a JSON request body.
 
-### POST / (Update Candlestick Chart)
-- Method: POST
-- Description: Update the candlestick chart based on user inputs.
-- Input Parameters:
-  - symbol (string): Stock symbol
-  - outputsize (string): Output size (compact or full)
-  - datatype (string): Data type (json or csv)
-  - function_interval (string, optional): Intraday interval (1min, 5min, 15min, 30min, 60min)
-- Output: HTML page with updated candlestick chart.
+The order form supplies `symbol`, `qty`, `side`, `type`, and `time_in_force`. No automatic trading strategy is implemented by these routes.
 
-## Request and Response Examples
-
-### POST / (Update Candlestick Chart)
-**Request:**
-```json
-{
-  "symbol": "AAPL",
-  "outputsize": "compact",
-  "datatype": "json",
-  "function_interval": "15min"
-}
+The cancellation route changes state through a GET request. Changing that to a protected POST action, adding input validation, and handling external API errors are follow-up work. Keep this app local.

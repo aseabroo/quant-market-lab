@@ -1,8 +1,9 @@
+import os
 import requests
 import time
 # Alpaca API credentials
-key_id = "PKP2V124H0HKOWUB4PJP"
-secret_key = "fS9uDM3vugecsTweCgvuTVGJnXonFMOLmdwIFf7d"
+key_id = os.environ["APCA_API_KEY_ID"]
+secret_key = os.environ["APCA_API_SECRET_KEY"]
   
 def get_alpaca_account():
     """

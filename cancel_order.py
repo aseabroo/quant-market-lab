@@ -1,9 +1,10 @@
+import os
 import requests
 import json
 
 # Alpaca API credentials
-key_id = "PKP2V124H0HKOWUB4PJP"
-secret_key = "fS9uDM3vugecsTweCgvuTVGJnXonFMOLmdwIFf7d"
+key_id = os.environ["APCA_API_KEY_ID"]
+secret_key = os.environ["APCA_API_SECRET_KEY"]
   
 
 def get_most_recent_order_id(api_key, api_secret):
@@ -39,8 +40,8 @@ def get_most_recent_order_id(api_key, api_secret):
 def delete_most_recent_order():
 
     # Alpaca API credentials
-    api_key= "PKP2V124H0HKOWUB4PJP"
-    api_secret = "fS9uDM3vugecsTweCgvuTVGJnXonFMOLmdwIFf7d"
+    api_key = os.environ["APCA_API_KEY_ID"]
+    api_secret = os.environ["APCA_API_SECRET_KEY"]
   
     # Fetch the most recent order ID (implement this function based on your earlier code)
     order_id = get_most_recent_order_id(api_key, api_secret)

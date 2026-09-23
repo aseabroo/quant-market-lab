@@ -1,3 +1,11 @@
+Historical coursework/design notes
+
+The assessment below is preserved as an earlier write-up. Its security,
+reliability, and trading-benefit claims were not demonstrated by tests.
+See README.md and documentation.md for the current behavior and limitations.
+
+---
+
 Quality Assessment of Quantum Flux Trading
 Augustus Seabrooke
 

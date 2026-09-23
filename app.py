@@ -1,3 +1,4 @@
+import os
 from flask import Flask, flash, render_template, request, redirect, url_for, jsonify
 import requests
 import json
@@ -16,14 +17,14 @@ check_alerts_url = 'http://127.0.0.1:5000/check_alerts'
 check_interval = 300  # 5 minutes
 
 # API key for stock data
-API_KEY = '5CZCCX7WZESVENBF'
+API_KEY = os.environ["ALPHA_VANTAGE_API_KEY"]
 CACHE_TIME = 300  # Cache duration of 5 minutes in seconds
 cached_data = None
 last_fetch_time = 0
 symbol = 'IBM'
 
 # Secret key for Flask application
-app.secret_key = 'password'
+app.secret_key = os.environ["FLASK_SECRET_KEY"]
 
 
 

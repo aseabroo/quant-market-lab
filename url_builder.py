@@ -57,4 +57,4 @@ def build_daily_url(symbol, apikey, outputsize='compact', datatype='json'):
     return url
 
 # Example usage
-# build_daily_url('AAPL', apikey='5CZCCX7WZESVENBF')
+# build_daily_url('AAPL', apikey='YOUR_API_KEY')

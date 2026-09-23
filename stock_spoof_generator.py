@@ -96,7 +96,7 @@ function = 'TIME_SERIES_DAILY'
 symbol = 'IBM'
 outputsize = 'Compact'
 datatype = 'json'
-apikey = 'L2ASITPZD0FAQIDB'  # Replace with your actual API key
+apikey = 'synthetic-example'  # Local generator input; not a real API credential
 
 spoofed_data = generate_stock_data(function, symbol, outputsize=outputsize, datatype=datatype, apikey=apikey)
 
