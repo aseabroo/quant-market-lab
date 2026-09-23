@@ -1,29 +1,40 @@
-# Quantum Flux Trading
+# Quantum Flux Toolkit
 
-An early Python/Flask experiment with stock-price charts and Alpaca paper-trading API calls.
+A Python/Flask sandbox for exploring financial market data, interactive candlestick charts, and synthetic OHLCV generation.
 
-The web app fetches time-series data from Alpha Vantage and renders a Plotly candlestick chart. A separate page retrieves an Alpaca paper account and submits paper orders. The repository also contains a synthetic-data experiment.
+This repository is intentionally separate from [AiQuant](https://github.com/aseabroo/aiquant). **AiQuant is the trading/research system. QFT is a lightweight market-data and visualization playground.**
+
+## What QFT is for
+
+QFT focuses on:
+
+- fetching market time-series data from Alpha Vantage,
+- rendering interactive Plotly candlestick charts,
+- experimenting with synthetic OHLCV generation,
+- trying small data/visualization ideas without coupling them to a trading engine.
+
+It does **not** contain a trading strategy, portfolio engine, backtester, execution system, or live-capital workflow.
 
 ## Main files
 
 | File | Purpose |
 | --- | --- |
-| [app.py](app.py) | Flask routes and form handling |
-| [data_fetch.py](data_fetch.py), [url_builder.py](url_builder.py) | Alpha Vantage requests |
-| [plot_stock_data.py](plot_stock_data.py) | Candlestick chart creation |
-| [alpaca_trading.py](alpaca_trading.py), [cancel_order.py](cancel_order.py) | Alpaca paper account and order requests |
-| [stock_spoof_generator.py](stock_spoof_generator.py) | Experimental synthetic data generator |
-| [stock_spoof_data.json](stock_spoof_data.json) | Saved sample data |
+| [app.py](app.py) | Flask market-data explorer |
+| [data_fetch.py](data_fetch.py) | Alpha Vantage request handling |
+| [url_builder.py](url_builder.py) | Daily/intraday request construction |
+| [plot_stock_data.py](plot_stock_data.py) | Interactive candlestick visualization |
+| [stock_spoof_generator.py](stock_spoof_generator.py) | Experimental synthetic OHLCV generator |
+| [stock_spoof_data.json](stock_spoof_data.json) | Saved synthetic sample |
+
+## Historical paper-trading experiment
+
+The original 2023 prototype also included Alpaca paper-account and order endpoints. Those files are preserved under `legacy/` for provenance, but they are no longer part of the active Flask application.
+
+That separation is deliberate: trading execution belongs in **AiQuant**, while QFT remains a safe experimentation surface for market data and visualization.
 
 ## Local setup
 
-Use Python 3.12, create a virtual environment, and install `requirements.txt`. Configure these environment variables before starting:
-
-- `ALPHA_VANTAGE_API_KEY`
-- `APCA_API_KEY_ID` and `APCA_API_SECRET_KEY` from an Alpaca **paper** account
-- `FLASK_SECRET_KEY`, a locally generated random value
-
-`.env.example` lists the names. Export them in your shell; `python app.py` does not automatically load that file.
+Use Python 3.12, create a virtual environment, and install the requirements.
 
 ```bash
 git clone https://github.com/aseabroo/qft.git
@@ -31,22 +42,26 @@ cd qft
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
-# Export the four environment variables listed above, then:
+export ALPHA_VANTAGE_API_KEY=your_key
 python app.py
 ```
 
-The local address is http://127.0.0.1:8000. The order modules use Alpaca's paper API. Do not substitute live-trading endpoints.
+Then open http://127.0.0.1:8000.
 
 ## Current limitations
 
-This is a development prototype. The home page depends on an external data response, error handling is incomplete, and the server starts in debug mode. There is no verified trading strategy, backtest, or performance result here.
+This remains a small experimental application rather than a production data service.
 
-The synthetic-data script is separate from the web app; there is no JSON upload route. Its intraday branch needs fixes for interval keys and termination when no month is given. Its imports also include Faker, which is absent from the current requirements. Avoid running that branch until it is repaired.
+- External-data error handling is basic.
+- Alpha Vantage rate limits can affect requests.
+- The server starts in Flask debug mode for local development.
+- The synthetic generator still needs stricter bounds and more deterministic fixtures.
+- There is no automated test suite yet.
 
-The portfolio-history request contains a fixed 2023 end date, and order cancellation needs better response handling. There is no automated test suite in the repository.
+## Portfolio role
 
-## Next steps
+Keep QFT as an **early financial-data experimentation project**. Its value is different from AiQuant: it shows the earlier Flask/data-visualization work and a lightweight sandbox mentality, while AiQuant represents the more structured quantitative research and trading stack.
 
-Make charting work from a saved sample response, handle missing or rate-limited data, and repair the synthetic generator with a bounded output size. Keep external paper-account tests separate from local checks.
+## Security note
 
-Historical commits contained credentials. Removing them from the current source does not revoke them or remove them from Git history; affected credentials need rotation.
+Historical commits contained credentials. Current source uses environment variables, but removing credentials from current files does not revoke old credentials or erase them from Git history. Any previously exposed credentials should remain rotated.
